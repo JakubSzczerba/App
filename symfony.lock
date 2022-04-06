@@ -1,4 +1,19 @@
 {
+    "doctrine/annotations": {
+        "version": "1.13",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "a2759dd6123694c8d901d0ec80006e044c2e6457"
+        },
+        "files": [
+            "./config/routes/annotations.yaml"
+        ]
+    },
+    "doctrine/lexer": {
+        "version": "1.2.3"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
@@ -7,6 +22,18 @@
     },
     "psr/log": {
         "version": "1.1.4"
+    },
+    "sensio/framework-extra-bundle": {
+        "version": "6.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "5.2",
+            "ref": "fb7e19da7f013d0d422fa9bce16f5c510e27609b"
+        },
+        "files": [
+            "./config/packages/sensio_framework_extra.yaml"
+        ]
     },
     "symfony/cache": {
         "version": "v4.4.40"
@@ -99,6 +126,9 @@
     "symfony/http-kernel": {
         "version": "v4.4.40"
     },
+    "symfony/inflector": {
+        "version": "v4.4.37"
+    },
     "symfony/mime": {
         "version": "v4.4.37"
     },
@@ -123,6 +153,9 @@
     "symfony/polyfill-php81": {
         "version": "v1.25.0"
     },
+    "symfony/property-access": {
+        "version": "v4.4.40"
+    },
     "symfony/routing": {
         "version": "4.4",
         "recipe": {
@@ -137,8 +170,52 @@
             "./config/routes.yaml"
         ]
     },
+    "symfony/security-bundle": {
+        "version": "4.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.4",
+            "ref": "7b4408dc203049666fe23fabed23cbadc6d8440f"
+        },
+        "files": [
+            "./config/packages/security.yaml"
+        ]
+    },
+    "symfony/security-core": {
+        "version": "v4.4.38"
+    },
+    "symfony/security-csrf": {
+        "version": "v4.4.37"
+    },
+    "symfony/security-guard": {
+        "version": "v4.4.37"
+    },
+    "symfony/security-http": {
+        "version": "v4.4.37"
+    },
     "symfony/service-contracts": {
         "version": "v2.5.1"
+    },
+    "symfony/translation-contracts": {
+        "version": "v2.5.1"
+    },
+    "symfony/twig-bridge": {
+        "version": "v4.4.40"
+    },
+    "symfony/twig-bundle": {
+        "version": "4.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.4",
+            "ref": "73baff3f7b3cea12a73812a7cfd2c0924a9e250f"
+        },
+        "files": [
+            "./config/packages/test/twig.yaml",
+            "./config/packages/twig.yaml",
+            "./templates/base.html.twig"
+        ]
     },
     "symfony/var-dumper": {
         "version": "v4.4.39"
@@ -148,5 +225,11 @@
     },
     "symfony/yaml": {
         "version": "v4.4.37"
+    },
+    "twig/extra-bundle": {
+        "version": "v3.3.8"
+    },
+    "twig/twig": {
+        "version": "v3.3.10"
     }
 }
