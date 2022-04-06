@@ -197,6 +197,9 @@
     "symfony/service-contracts": {
         "version": "v2.5.1"
     },
+    "symfony/stopwatch": {
+        "version": "v4.4.38"
+    },
     "symfony/translation-contracts": {
         "version": "v2.5.1"
     },
@@ -222,6 +225,20 @@
     },
     "symfony/var-exporter": {
         "version": "v4.4.40"
+    },
+    "symfony/web-profiler-bundle": {
+        "version": "4.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "6bdfa1a95f6b2e677ab985cd1af2eae35d62e0f6"
+        },
+        "files": [
+            "./config/packages/dev/web_profiler.yaml",
+            "./config/packages/test/web_profiler.yaml",
+            "./config/routes/dev/web_profiler.yaml"
+        ]
     },
     "symfony/yaml": {
         "version": "v4.4.37"
