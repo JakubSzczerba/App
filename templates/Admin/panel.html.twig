@@ -9,6 +9,10 @@
                 <h1 class="mt-5">Nowy wniosek</h1><br>
                 <button type="submit" class="btn btn-success">Nowy wniosek</button>
             </form>
+            <br>
+            {% for proposals in proposals %}
+                <a>{{ proposals.name }}</a>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

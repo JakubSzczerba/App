@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Proposal;
 use App\Form\ProposalType;
+use App\Repository\ProposalRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,6 +33,7 @@ class AdminController extends AbstractController
             $cover = $form->get('cover')->getData();
             $description = $form->get('description')->getData();
             $value = $form->get('value')->getData();
+            $user = $this->getUser();
 
             $proposal->setName($name);
             $proposal->setType($type);
@@ -40,6 +42,7 @@ class AdminController extends AbstractController
             $proposal->setCover($cover);
             $proposal->setDescription($description);
             $proposal->setValue($value);
+            $proposal->setUser($user);
 
             $entityManager->persist($proposal);
             $entityManager->flush();
@@ -52,6 +55,21 @@ class AdminController extends AbstractController
         return $this->render('Admin/proposalForm.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/show", name="show")
+     */
+    public function showProposals(EntityManagerInterface $entityManager, ProposalRepository $proposalRepository)
+    {
+        $id = $this->getUser()->getId();
+
+        $showProposals = $proposalRepository->showProposals($id);
+
+        return $this->render('Admin/panel.html.twig', [
+            'proposals' => $showProposals,
+        ]);
+
     }
 
 }
