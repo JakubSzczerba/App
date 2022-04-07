@@ -81,7 +81,7 @@ class Proposal
 
     public function setType($type): void
     {
-        $this->cover = $type;
+        $this->type = $type;
     }
 
     public function getActivity(): ?string
