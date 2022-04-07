@@ -38,9 +38,6 @@ class ProposalType extends AbstractType
             ->add('value', NumberType::class, [
                 'label' => 'Wartosc'
             ])
-            ->add('save', SubmitType::class, [
-                'label' => 'Zapisz',
-            ])
         ;
     }
 }
