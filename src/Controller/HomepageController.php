@@ -16,7 +16,13 @@ class HomepageController extends AbstractController
     {
         if ($this->getUser())
         {
+            if ($this->getUser()->getRoles() === ['ROLE_ADMIN'])
+            {
+                return $this->redirectToRoute('panel');
+            }
+            else {
             return $this->redirectToRoute('dashboard');
+            }
         }
 
         else {
@@ -30,5 +36,13 @@ class HomepageController extends AbstractController
     public function dashboard()
     {
         return $this->render('User/dashboard.html.twig');
+    }
+
+    /**
+     * @Route("/panel", name="panel")
+     */
+    public function panel()
+    {
+        return $this->render('Admin/panel.html.twig');
     }
 }
