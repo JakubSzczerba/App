@@ -54,6 +54,12 @@ class Proposal
      */
     private $value;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="proposal")"
+     * @JoinTable(name="user_proposal")
+     */
+    private $user;
+
     public function __construct()
     {
         $this->datetime = new \DateTime();
@@ -132,5 +138,16 @@ class Proposal
     public function setValue($value): void
     {
         $this->value = $value;
+    }
+
+    public function getUser(): ?Collection
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user[] = $user;
+        return $this;
     }
 }

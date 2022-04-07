@@ -42,6 +42,12 @@ class User implements UserInterface
     private $roles = [];
 
     /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Proposal", mappedBy="user")"
+     *
+     */
+    private $proposal;
+
+    /**
      * User constructor.
      * @param string $username
      * @param string $email
@@ -110,6 +116,17 @@ class User implements UserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
+        return $this;
+    }
+
+    public function getProposal(): ?Proposal
+    {
+        return $this->proposal;
+    }
+
+    public function setProposal(?Proposal $proposal): self
+    {
+        $this->proposal = $proposal;
         return $this;
     }
 
