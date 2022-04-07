@@ -8,7 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -19,6 +19,17 @@ class ProposalType extends AbstractType
         $builder
             ->add('name', TextType::class,  [
                 'label' => 'Nazwa'
+            ])
+            ->add('type', ChoiceType::class, [
+                'choices' => [
+                    'Przeniesienie środków z kafeterii' => '1',
+                    'Dodatkowe zasilenie kafeterii' => '2',
+                    'Potrącenie z wynagrodzenia' => '3',
+                    'Dodatek do wynagrodzenia' => '4',
+                    'Obieg dokumentów (akceptacja)' => '5',
+                    'Inne (dowolne)' => '6'
+                ],
+                'label' => 'Rodzaj'
             ])
             ->add('activity', TextType::class,  [
                 'label' => 'Aktywnosc'

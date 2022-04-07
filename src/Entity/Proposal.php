@@ -27,6 +27,10 @@ class Proposal
     /**
      * @ORM\Column(type="string")
      */
+    private $type;
+    /**
+     * @ORM\Column(type="string")
+     */
     private $activity;
     /**
      * @var \DateTime
@@ -68,6 +72,16 @@ class Proposal
     public function setName($name): void
     {
         $this->name = $name;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType($type): void
+    {
+        $this->cover = $type;
     }
 
     public function getActivity(): ?string
