@@ -58,7 +58,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/panel", name="show")
+     * @Route("/panel", methods="GET|POST", name="list")
      */
     public function showProposals(ProposalRepository $proposalRepository)
     {

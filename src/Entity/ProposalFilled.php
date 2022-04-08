@@ -28,7 +28,7 @@ class ProposalFilled
      */
     private $proposal;
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="filledByUser")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="filledByUser")
      * @ORM\JoinColumn(name="users_id", nullable=false, referencedColumnName="id")
      */
     private $users;

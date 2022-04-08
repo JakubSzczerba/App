@@ -48,7 +48,7 @@ class User implements UserInterface
     private $proposal;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\ProposalFilled", mappedBy="users")
+     * @ORM\OneToMany(targetEntity="App\Entity\ProposalFilled", mappedBy="users")
      */
     private $filledByUser;
 
