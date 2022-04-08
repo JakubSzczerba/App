@@ -53,10 +53,9 @@ class ProposalFilled
         return $this->proposal;
     }
 
-    public function setProposal(?Proposal $proposal): self
+    public function setProposal($proposal): void
     {
         $this->proposal = $proposal;
-        return $this;
     }
 
     public function getUsers(): ?User
