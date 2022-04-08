@@ -29,7 +29,7 @@ class Proposal
      */
     private $type;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="boolean")
      */
     private $activity;
     /**
@@ -90,7 +90,7 @@ class Proposal
         $this->type = $type;
     }
 
-    public function getActivity(): ?string
+    public function getActivity(): ?bool
     {
         return $this->activity;
     }

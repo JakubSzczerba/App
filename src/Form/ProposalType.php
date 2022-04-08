@@ -22,17 +22,21 @@ class ProposalType extends AbstractType
             ])
             ->add('type', ChoiceType::class, [
                 'choices' => [
-                    'Przeniesienie środków z kafeterii' => '1',
-                    'Dodatkowe zasilenie kafeterii' => '2',
-                    'Potrącenie z wynagrodzenia' => '3',
-                    'Dodatek do wynagrodzenia' => '4',
-                    'Obieg dokumentów (akceptacja)' => '5',
-                    'Inne (dowolne)' => '6'
+                    'Przeniesienie środków z kafeterii' => 'Przeniesienie środków z kafeterii',
+                    'Dodatkowe zasilenie kafeterii' => 'Dodatkowe zasilenie kafeterii',
+                    'Potrącenie z wynagrodzenia' => 'Potrącenie z wynagrodzenia',
+                    'Dodatek do wynagrodzenia' => 'Dodatek do wynagrodzenia',
+                    'Obieg dokumentów (akceptacja)' => 'Obieg dokumentów (akceptacja)',
+                    'Inne (dowolne)' => 'Inne (dowolne)'
                 ],
                 'label' => 'Rodzaj'
             ])
-            ->add('activity', TextType::class,  [
-                'label' => 'Aktywnosc'
+            ->add('activity', ChoiceType::class, [
+                'choices' => [
+                    'Aktywny' => true,
+                    'Nieaktywny' => false
+                ],
+                'label' => 'Status'
             ])
             ->add('datetime', DateType::class,  [
                 'label' => 'Data',
