@@ -10,9 +10,13 @@
                 <button type="submit" class="btn btn-success">Nowy wniosek</button>
             </form>
             <br>
-            {% for proposals in proposals %}
-                <a>{{ proposals.name }}</a>
-            {% endfor %}
+            {% if proposals %}
+                {% for proposals in proposals %}
+                    <a>{{ proposals.name }}</a>
+                {% endfor %}
+            {% else %}
+                <a>Brak wniosków</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
