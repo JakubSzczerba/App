@@ -58,9 +58,9 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/show", name="show")
+     * @Route("/panel", name="show")
      */
-    public function showProposals(EntityManagerInterface $entityManager, ProposalRepository $proposalRepository)
+    public function showProposals(ProposalRepository $proposalRepository)
     {
         $id = $this->getUser()->getId();
 
@@ -69,7 +69,6 @@ class AdminController extends AbstractController
         return $this->render('Admin/panel.html.twig', [
             'proposals' => $showProposals,
         ]);
-
     }
 
 }
