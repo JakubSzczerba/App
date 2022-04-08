@@ -59,6 +59,10 @@ class Proposal
      * @JoinTable(name="user_proposal")
      */
     private $user;
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ProposalFilled", mappedBy="proposal")
+     */
+    private $proposalFilled;
 
     public function __construct()
     {
@@ -149,5 +153,15 @@ class Proposal
     {
         $this->user[] = $user;
         return $this;
+    }
+
+    public function getProposalFilled(): ?ProposalFilled
+    {
+        return $this->proposalFilled;
+    }
+
+    public function setProposalFilled($proposalFilled): void
+    {
+        $this->proposalFilled = $proposalFilled;
     }
 }

@@ -48,6 +48,11 @@ class User implements UserInterface
     private $proposal;
 
     /**
+     * @ORM\OneToOne(targetEntity="App\Entity\ProposalFilled", mappedBy="users")
+     */
+    private $filledByUser;
+
+    /**
      * User constructor.
      * @param string $username
      * @param string $email
@@ -127,6 +132,17 @@ class User implements UserInterface
     public function setProposal(?Proposal $proposal): self
     {
         $this->proposal = $proposal;
+        return $this;
+    }
+
+    public function getProposalFilled(): ?ProposalFilled
+    {
+        return $this->filledByUser;
+    }
+
+    public function setProposalFilled(?ProposalFilled $filledByUser): self
+    {
+        $this->filledByUser = $filledByUser;
         return $this;
     }
 
