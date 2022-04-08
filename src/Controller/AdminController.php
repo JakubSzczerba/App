@@ -71,4 +71,30 @@ class AdminController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/panel/off/{id}", methods="GET|POST", name="offStatus")
+     */
+    public function offStatus(EntityManagerInterface $entityManager, int $id)
+    {
+        $proposal = $this->getDoctrine()->getRepository(Proposal::class)->find(array('id' => $id));
+
+        $proposal->setActivity(false);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('panel');
+    }
+
+    /**
+     * @Route("/panel/on/{id}", methods="GET|POST", name="onStatus")
+     */
+    public function onStatus(EntityManagerInterface $entityManager, int $id)
+    {
+        $proposal = $this->getDoctrine()->getRepository(Proposal::class)->find(array('id' => $id));
+
+        $proposal->setActivity(true);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('panel');
+    }
+
 }

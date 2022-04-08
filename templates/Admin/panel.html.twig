@@ -27,7 +27,20 @@
                         <td>{{ proposals.name }}</td>
                         <td>{{ proposals.type }}</td>
                         <td>{{ proposals.datetime|date('d-m-Y') }}</td>
-                        <td>{{ proposals.activity }}</td>
+                         {% if proposals.activity == 1 %}
+                             <td>
+                                 <form action="{{ path('offStatus', {id: proposals.id}) }}" method="POST" class="form-horizontal">
+                                     <button type="submit" class="btn btn-danger">Dezaktywuj</button>
+                                 </form>
+                             </td>
+                         {% elseif proposals.activity == 0 %}
+                             <td>
+                                 <form action="{{ path('onStatus', {id: proposals.id}) }}" method="POST" class="form-horizontal">
+                                     <button type="submit" class="btn btn-success">Aktywuj</button>
+                                 </form>
+                             </td>
+                             {% else %}
+                         {% endif%}
                     {% endfor %}
                 </tbody>
                 </table>
