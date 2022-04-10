@@ -3,7 +3,35 @@
 {% block body %}
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="mt-5">hello {{ app.user.username }}</h1>
+            <h1 class="mt-5">Wnioski do wypelnienia</h1>
+            <br>
+            {% if proposals %}
+            <br>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for proposals in proposals %}
+                    <tr>
+                        <td>cover</td>
+                        <td><h6>{{ proposals.name }}</h6><br>
+                            {{ proposals.description }}
+                        </td>
+                        <td>
+                            <form action="{{ path('fill', {id: proposals.id}) }}" method="POST" class="form-horizontal">
+                                <button type="submit" class="btn btn-success">Skladam wniosek</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                    </tbody>
+                    </table>
+            {% endif%}
         </div>
     </div>
 {% endblock %}

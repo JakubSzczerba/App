@@ -26,4 +26,17 @@ class ProposalRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->getArrayResult();
     }
+
+    /**
+     * @return activeProposals[]
+     */
+    public function showActiveProposals()
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb->select('p')
+            ->where('p.activity = 1');
+
+        return $qb->getQuery()->getArrayResult();
+    }
 }
