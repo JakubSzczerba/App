@@ -97,4 +97,23 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('panel');
     }
 
+    /**
+     * @Route("/panel/remove/{id}", methods="GET|POST", name="removeProposal")
+     */
+    public function removeProposal(EntityManagerInterface $entityManager, int $id)
+    {
+        $proposal = $this->getDoctrine()->getRepository(Proposal::class)->find(array('id' => $id));
+
+        if ($id)
+        {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($proposal);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('panel');
+        }
+        else {
+            return $this->render('Admin/panel.html.twig');
+        }
+    }
 }
