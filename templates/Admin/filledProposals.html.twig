@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="mt-5">Wypelnione wnioski <a href="{{ path('list') }}">Lista wnioskow</a></h1>
+            <br>
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>LP</th>
+                        <th>Wniosek</th>
+                        <th>Pacownik</th>
+                        <th>Rodzaj</th>
+                        <th>Data</th>
+                        <th>Decyzja</th>
+                        <th>Akcje</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for filledProposals in filledProposals %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td><h6>{{ filledProposals.proposal.name }}</h6></td>
+                            <td>{{ filledProposals.users.username }} ({{ filledProposals.users.email }})</td>
+                            <td>{{ filledProposals.proposal.type }}</td>
+                            <td>{{ filledProposals.proposal.datetime|date('d-m-Y') }}</td>
+                            <td>{{ filledProposals.decision }}</td>
+                            <td>
+                                <form action="{{ path('makeDecision', {id: filledProposals.id}) }}" method="POST" class="form-horizontal">
+                                    <button type="submit" class="btn btn-success">Zarzadzaj</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+        </div>
+    </div>
+{% endblock %}

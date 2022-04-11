@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Proposal;
+use App\Entity\ProposalFilled;
 use App\Form\ProposalType;
+use App\Form\MakeProposalDecisionType;
 use App\Repository\ProposalRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
@@ -136,6 +138,49 @@ class AdminController extends AbstractController
         return $this->render('Admin/proposalForm.html.twig', [
             'form' => $form->createView()
         ]);
+
+    }
+
+    /**
+     * @Route("/panel/proposals", methods="GET|POST", name="listFilledProposals")
+     */
+    public function listFilledProposals()
+    {
+        $filledProposals = $this->getDoctrine()->getRepository(ProposalFilled::class)->findAll();
+
+        return $this->render('Admin/filledProposals.html.twig', [
+            'filledProposals' => $filledProposals,
+        ]);
+    }
+
+    /**
+     * @Route("/panel/proposals/{id}", methods="GET|POST", name="makeDecision")
+     */
+    public function makeDecision(EntityManagerInterface $entityManager, Request $request, int $id)
+    {
+        $filledProposal = $this->getDoctrine()->getRepository(ProposalFilled::class)->find(array('id' => $id));
+
+        $form = $this->createForm(MakeProposalDecisionType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $decision = $form->get('decision')->getData();
+            $information = $form->get('information')->getData();
+
+            $filledProposal->setDecision($decision);
+            $filledProposal->setInformation($information);
+
+            $entityManager->persist($filledProposal);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('listFilledProposals');
+        }
+
+        return $this->render('Admin/makeDecisionForm.html.twig', [
+            'form' => $form->createView(),
+            'filledProposal' => $filledProposal,
+        ]);
+
 
     }
 }
