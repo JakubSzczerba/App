@@ -3,7 +3,7 @@
 {% block body %}
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="mt-5">Lista Wniosków</h1>
+            <h1 class="mt-5">Lista Wniosków <a href="{{ path('listFilledProposals') }}">Wypelnione wnioski</a></h1>
             <br>
             {% if proposals is defined %}
             <form action="{{ path('newProposal') }}" method="POST" class="form-horizontal">
