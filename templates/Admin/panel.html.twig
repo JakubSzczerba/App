@@ -43,6 +43,7 @@
                          {% endif%}
                             <td>
                                 <a class="remove" href="{{ path('removeProposal', {id: proposals.id}) }}" onclick="return confirm('Jesteś pewny?')"><span style="color: red">Usuń</span></a>
+                                <a href="{{ path('editProposal', {id: proposals.id}) }}">Edytuj</a>
                             </td>
                     {% endfor %}
                 </tbody>

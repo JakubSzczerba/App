@@ -116,4 +116,44 @@ class AdminController extends AbstractController
             return $this->render('Admin/panel.html.twig');
         }
     }
+
+    /**
+     * @Route("/panel/edit/{id}", methods="GET|POST", name="editProposal")
+     */
+    public function editProposals(EntityManagerInterface $entityManager, Request $request, int $id)
+    {
+        $proposal = $this->getDoctrine()->getRepository(Proposal::class)->find(array('id' => $id));
+
+        $form = $this->createForm(ProposalType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $name = $form->get('name')->getData();
+            $type = $form->get('type')->getData();
+            $activity = $form->get('activity')->getData();
+            $datetime = $form->get('datetime')->getData();
+            $cover = $form->get('cover')->getData();
+            $description = $form->get('description')->getData();
+            $value = $form->get('value')->getData();
+            $user = $this->getUser();
+
+            $proposal->setName($name);
+            $proposal->setType($type);
+            $proposal->setActivity($activity);
+            $proposal->setDatetime($datetime);
+            $proposal->setCover($cover);
+            $proposal->setDescription($description);
+            $proposal->setValue($value);
+            $proposal->setUser($user);
+
+            $entityManager->flush();
+
+            return $this->redirectToRoute('panel');
+        }
+
+        return $this->render('Admin/proposalForm.html.twig', [
+            'form' => $form->createView()
+        ]);
+
+    }
 }
