@@ -41,6 +41,10 @@
                              </td>
                              {% else %}
                          {% endif%}
+                            <td>
+                                <a href="{{ path('editProposal', {id: proposals.id}) }}">Edytuj</a>
+                                <a class="remove" href="{{ path('removeProposal', {id: proposals.id}) }}" onclick="return confirm('Jesteś pewny?')"><span style="color: red">Usuń</span></a>
+                            </td>
                     {% endfor %}
                 </tbody>
                 </table>
