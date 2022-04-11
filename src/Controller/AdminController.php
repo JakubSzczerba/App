@@ -124,28 +124,10 @@ class AdminController extends AbstractController
     {
         $proposal = $this->getDoctrine()->getRepository(Proposal::class)->find(array('id' => $id));
 
-        $form = $this->createForm(ProposalType::class);
+        $form = $this->createForm(ProposalType::class, $proposal);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $name = $form->get('name')->getData();
-            $type = $form->get('type')->getData();
-            $activity = $form->get('activity')->getData();
-            $datetime = $form->get('datetime')->getData();
-            $cover = $form->get('cover')->getData();
-            $description = $form->get('description')->getData();
-            $value = $form->get('value')->getData();
-            $user = $this->getUser();
-
-            $proposal->setName($name);
-            $proposal->setType($type);
-            $proposal->setActivity($activity);
-            $proposal->setDatetime($datetime);
-            $proposal->setCover($cover);
-            $proposal->setDescription($description);
-            $proposal->setValue($value);
-            $proposal->setUser($user);
-
             $entityManager->flush();
 
             return $this->redirectToRoute('panel');
