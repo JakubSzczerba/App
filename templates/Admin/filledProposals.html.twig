@@ -27,7 +27,11 @@
                             <td>{{ filledProposals.proposal.type }}</td>
                             <td>{{ filledProposals.proposal.datetime|date('d-m-Y') }}</td>
                             <td>{{ filledProposals.decision }}</td>
-                            <td><button type="submit" class="btn btn-success">Zarzadzaj</button></td>
+                            <td>
+                                <form action="{{ path('makeDecision', {id: filledProposals.id}) }}" method="POST" class="form-horizontal">
+                                    <button type="submit" class="btn btn-success">Zarzadzaj</button>
+                                </form>
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>

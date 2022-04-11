@@ -27,6 +27,10 @@ class ProposalFilled
      */
     private $decision;
     /**
+     * @ORM\Column(type="string")
+     */
+    private $information;
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Proposal", inversedBy="proposalFilled")
      * @ORM\JoinColumn(name="proposal_id", nullable=false, referencedColumnName="id")
      */
@@ -60,6 +64,16 @@ class ProposalFilled
     public function setDecision($decision): void
     {
         $this->decision = $decision;
+    }
+
+    public function getInformation(): ?string
+    {
+        return $this->information;
+    }
+
+    public function setInformation($information): void
+    {
+        $this->information = $information;
     }
 
     public function getProposal(): ?Proposal
