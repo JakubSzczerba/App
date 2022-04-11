@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Proposal;
+use App\Entity\ProposalFilled;
 use App\Form\ProposalType;
 use App\Repository\ProposalRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -137,5 +138,17 @@ class AdminController extends AbstractController
             'form' => $form->createView()
         ]);
 
+    }
+
+    /**
+     * @Route("/panel/proposals", methods="GET|POST", name="listFilledProposals")
+     */
+    public function listFilledProposals()
+    {
+        $filledProposals = $this->getDoctrine()->getRepository(ProposalFilled::class)->findAll();
+
+        return $this->render('Admin/filledProposals.html.twig', [
+            'filledProposals' => $filledProposals,
+        ]);
     }
 }
