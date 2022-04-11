@@ -42,10 +42,12 @@ class DashboardController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $value = $form->get('value')->getData();
             $user = $this->getUser();
+            $decision = 'Nowy';
 
             $filledProposal->setValue($value);
             $filledProposal->setUsers($user);
             $filledProposal->setProposal($proposal);
+            $filledProposal->setDecision($decision);
 
             $entityManager->persist($filledProposal);
             $entityManager->flush();

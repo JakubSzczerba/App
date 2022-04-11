@@ -26,7 +26,7 @@
                             <td>{{ filledProposals.users.username }} ({{ filledProposals.users.email }})</td>
                             <td>{{ filledProposals.proposal.type }}</td>
                             <td>{{ filledProposals.proposal.datetime|date('d-m-Y') }}</td>
-                            <td>cos</td>
+                            <td>{{ filledProposals.decision }}</td>
                             <td><button type="submit" class="btn btn-success">Zarzadzaj</button></td>
                         </tr>
                     {% endfor %}
