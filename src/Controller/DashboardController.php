@@ -64,4 +64,11 @@ class DashboardController extends AbstractController
 
     }
 
+    /**
+     * @Route("/dashboard/myProposals", methods="GET|POST", name="myProposals")
+     */
+    public function myProposals()
+    {
+    }
+
 }
