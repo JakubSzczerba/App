@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="mt-5">Moje wnioski</h1>
+            {% for proposals in userFilledProposals %}
+                {{ proposals.value }}
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}
