@@ -3,11 +3,33 @@
 {% block body %}
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="mt-5">Moje wnioski</h1>
-            {% for proposals in userFilledProposals %}
-                {{ proposals.value }}
-            {% endfor %}
-
+            <h1 class="mt-5">Moje wnioski <a href="{{ path('show') }}">Wnioski do wypelnienia</a></h1>
+            <br>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>LP</th>
+                    <th>Nazwa wniosku</th>
+                    <th>Data</th>
+                    <th>Decyzja</th>
+                    <th>Akcje</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for userFilledProposals in userFilledProposals %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td><h6>{{ userFilledProposals.proposal.name }}</h6></td>
+                        <td>{{ userFilledProposals.proposal.datetime|date('d-m-Y') }}</td>
+                        <td>{{ userFilledProposals.decision }}</td>
+                        <td>
+                                <button type="submit" class="btn btn-primary">Edycja</button>
+                                <button type="submit" class="btn btn-warning">Podlgad</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 {% endblock %}

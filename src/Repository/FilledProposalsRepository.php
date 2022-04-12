@@ -20,11 +20,13 @@ class FilledProposalsRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('p');
 
-        $qb->select('p')
+        $qb->select('p', 'u', 'f')
             ->leftJoin('p.users', 'u')
+            ->join('p.proposal', 'f')
             ->where('u.id = :user')
             ->setParameter('user', $id);
 
+        //dd($qb->getQuery()->getArrayResult());
         return $qb->getQuery()->getArrayResult();
     }
 
