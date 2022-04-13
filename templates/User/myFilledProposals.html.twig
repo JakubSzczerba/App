@@ -21,11 +21,29 @@
                         <td>{{ loop.index }}</td>
                         <td><h6>{{ userFilledProposals.proposal.name }}</h6></td>
                         <td>{{ userFilledProposals.proposal.datetime|date('d-m-Y') }}</td>
-                        <td>{{ userFilledProposals.decision }}</td>
-                        <td>
-                                <button type="submit" class="btn btn-primary">Edycja</button>
+                        {% if userFilledProposals.decision == 'Zaakceptowany' %}
+                            <td><span class="badge badge-pill badge-success">{{ userFilledProposals.decision }}</span></td>
+                            <td>
                                 <button type="submit" class="btn btn-warning">Podlgad</button>
-                        </td>
+                            </td>
+                        {% elseif userFilledProposals.decision == 'Wymagana zmiana' %}
+                            <td><span class="badge badge-pill badge-secondary">{{ userFilledProposals.decision }}</span></td>
+                            <td>
+                                <button type="submit" class="btn btn-warning">Podlgad</button>
+                                <button type="submit" class="btn btn-primary">Edycja</button>
+                            </td>
+                        {% elseif userFilledProposals.decision == 'Odrzucony' %}
+                            <td><span class="badge badge-pill badge-danger">{{ userFilledProposals.decision }}</span></td>
+                            <td>
+                                <button type="submit" class="btn btn-warning">Podlgad</button>
+                            </td>
+                        {% else %}
+                            <td><span class="badge badge-pill badge-info">{{ userFilledProposals.decision }}</span></td>
+                            <td>
+                                <button type="submit" class="btn btn-warning">Podlgad</button>
+                                <button type="submit" class="btn btn-primary">Edycja</button>
+                            </td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
                 </tbody>
