@@ -26,7 +26,17 @@
                             <td>{{ filledProposals.users.username }} ({{ filledProposals.users.email }})</td>
                             <td>{{ filledProposals.proposal.type }}</td>
                             <td>{{ filledProposals.proposal.datetime|date('d-m-Y') }}</td>
-                            <td>{{ filledProposals.decision }}</td>
+                            {% if filledProposals.decision == 'Zaakceptowany' %}
+                                <td><span class="badge badge-pill badge-success">{{ filledProposals.decision }}</span></td>
+                            {% elseif filledProposals.decision == 'Wymagana zmiana' %}
+                                <td><span class="badge badge-pill badge-secondary">{{ filledProposals.decision }}</span></td>
+                            {% elseif filledProposals.decision == 'Odrzucony' %}
+                                <td><span class="badge badge-pill badge-danger">{{ filledProposals.decision }}</span></td>
+                            {% elseif filledProposals.decision == 'Wymaga weryfiakcji' %}
+                                <td><span class="badge badge-pill badge-dark">{{ filledProposals.decision }}</span></td>
+                            {% else %}
+                                <td><span class="badge badge-pill badge-info">{{ filledProposals.decision }}</span></td>
+                            {% endif %}
                             <td>
                                 <form action="{{ path('makeDecision', {id: filledProposals.id}) }}" method="POST" class="form-horizontal">
                                     <button type="submit" class="btn btn-success">Zarzadzaj</button>
