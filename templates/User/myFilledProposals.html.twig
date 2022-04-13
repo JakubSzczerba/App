@@ -31,21 +31,36 @@
                         {% elseif userFilledProposals.decision == 'Wymagana zmiana' %}
                             <td><span class="badge badge-pill badge-secondary">{{ userFilledProposals.decision }}</span></td>
                             <td>
-                                <button type="submit" class="btn btn-warning">Podlgad</button>
-                                <button type="submit" class="btn btn-primary">Edycja</button>
+                                <form action="{{ path('viewProposal', {id: userFilledProposals.id}) }}" method="POST" class="d-inline">
+                                    <button type="submit" class="btn btn-warning">Podlgad</button>
+                                </form>
+                                <form action="{{ path('editFilledProposal', {id: userFilledProposals.id}) }}" method="POST" class="d-inline">
+                                    <button type="submit" class="btn btn-primary">Edycja</button>
+                                </form>
                             </td>
                         {% elseif userFilledProposals.decision == 'Odrzucony' %}
                             <td><span class="badge badge-pill badge-danger">{{ userFilledProposals.decision }}</span></td>
                             <td>
-                                <form action="{{ path('viewProposal', {id: userFilledProposals.id}) }}" method="POST" class="form-horizontal">
+                                <form action="{{ path('viewProposal', {id: userFilledProposals.id}) }}" method="POST" class="d-inline">
+                                    <button type="submit" class="btn btn-warning">Podlgad</button>
+                                </form>
+                            </td>
+                        {% elseif userFilledProposals.decision == 'Wymaga weryfiakcji' %}
+                            <td><span class="badge badge-pill badge-dark">{{ userFilledProposals.decision }}</span></td>
+                            <td>
+                                <form action="{{ path('viewProposal', {id: userFilledProposals.id}) }}" method="POST" class="d-inline">
                                     <button type="submit" class="btn btn-warning">Podlgad</button>
                                 </form>
                             </td>
                         {% else %}
                             <td><span class="badge badge-pill badge-info">{{ userFilledProposals.decision }}</span></td>
                             <td>
-                                <button type="submit" class="btn btn-warning">Podlgad</button>
-                                <button type="submit" class="btn btn-primary">Edycja</button>
+                                <form action="{{ path('viewProposal', {id: userFilledProposals.id}) }}" method="POST" class="d-inline">
+                                    <button type="submit" class="btn btn-warning">Podlgad</button>
+                                </form>
+                                <form action="{{ path('editFilledProposal', {id: userFilledProposals.id}) }}" method="POST" class="d-inline">
+                                    <button type="submit" class="btn btn-primary">Edycja</button>
+                                </form>
                             </td>
                         {% endif %}
                     </tr>

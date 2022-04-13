@@ -45,6 +45,8 @@
                             <td><span class="badge badge-pill badge-secondary">{{ proposal.decision }}</span></td>
                         {% elseif proposal.decision == 'Odrzucony' %}
                             <td><span class="badge badge-pill badge-danger">{{ proposal.decision }}</span></td>
+                        {% elseif proposal.decision == 'Wymaga weryfiakcji' %}
+                            <td><span class="badge badge-pill badge-dark">{{ proposal.decision }}</span></td>
                         {% else %}
                             <td><span class="badge badge-pill badge-info">{{ proposal.decision }}</span></td>
                         {% endif %}
