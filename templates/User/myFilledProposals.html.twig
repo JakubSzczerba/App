@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="mt-5">Moje wnioski <a href="{{ path('show') }}">Wnioski do wypelnienia</a></h1>
+            <br>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>LP</th>
+                    <th>Nazwa wniosku</th>
+                    <th>Data</th>
+                    <th>Decyzja</th>
+                    <th>Akcje</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for userFilledProposals in userFilledProposals %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td><h6>{{ userFilledProposals.proposal.name }}</h6></td>
+                        <td>{{ userFilledProposals.proposal.datetime|date('d-m-Y') }}</td>
+                        {% if userFilledProposals.decision == 'Zaakceptowany' %}
+                            <td><span class="badge badge-pill badge-success">{{ userFilledProposals.decision }}</span></td>
+                            <td>
+                                <form action="{{ path('viewProposal', {id: userFilledProposals.id}) }}" method="POST" class="form-horizontal">
+                                    <button type="submit" class="btn btn-warning">Podlgad</button>
+                                </form>
+                            </td>
+                        {% elseif userFilledProposals.decision == 'Wymagana zmiana' %}
+                            <td><span class="badge badge-pill badge-secondary">{{ userFilledProposals.decision }}</span></td>
+                            <td>
+                                <form action="{{ path('viewProposal', {id: userFilledProposals.id}) }}" method="POST" class="d-inline">
+                                    <button type="submit" class="btn btn-warning">Podlgad</button>
+                                </form>
+                                <form action="{{ path('editFilledProposal', {id: userFilledProposals.id}) }}" method="POST" class="d-inline">
+                                    <button type="submit" class="btn btn-primary">Edycja</button>
+                                </form>
+                            </td>
+                        {% elseif userFilledProposals.decision == 'Odrzucony' %}
+                            <td><span class="badge badge-pill badge-danger">{{ userFilledProposals.decision }}</span></td>
+                            <td>
+                                <form action="{{ path('viewProposal', {id: userFilledProposals.id}) }}" method="POST" class="d-inline">
+                                    <button type="submit" class="btn btn-warning">Podlgad</button>
+                                </form>
+                            </td>
+                        {% elseif userFilledProposals.decision == 'Wymaga weryfiakcji' %}
+                            <td><span class="badge badge-pill badge-dark">{{ userFilledProposals.decision }}</span></td>
+                            <td>
+                                <form action="{{ path('viewProposal', {id: userFilledProposals.id}) }}" method="POST" class="d-inline">
+                                    <button type="submit" class="btn btn-warning">Podlgad</button>
+                                </form>
+                            </td>
+                        {% else %}
+                            <td><span class="badge badge-pill badge-info">{{ userFilledProposals.decision }}</span></td>
+                            <td>
+                                <form action="{{ path('viewProposal', {id: userFilledProposals.id}) }}" method="POST" class="d-inline">
+                                    <button type="submit" class="btn btn-warning">Podlgad</button>
+                                </form>
+                                <form action="{{ path('editFilledProposal', {id: userFilledProposals.id}) }}" method="POST" class="d-inline">
+                                    <button type="submit" class="btn btn-primary">Edycja</button>
+                                </form>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

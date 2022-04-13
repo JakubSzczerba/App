@@ -8,6 +8,7 @@ use App\Entity\Proposal;
 use App\Entity\ProposalFilled;
 use App\Form\FillProposalType;
 use App\Repository\ProposalRepository;
+use App\Repository\FilledProposalsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
@@ -62,6 +63,19 @@ class DashboardController extends AbstractController
             'proposal' => $proposal,
         ]);
 
+    }
+
+    /**
+     * @Route("/dashboard/myProposals", methods="GET|POST", name="myProposals")
+     */
+    public function myProposals(FilledProposalsRepository $filledProposalsRepository)
+    {
+        $id = $this->getUser()->getId();
+        $userFilledProposals = $filledProposalsRepository->userFilledProposals($id);
+
+        return $this->render('User/myFilledProposals.html.twig', [
+            'userFilledProposals' => $userFilledProposals,
+        ]);
     }
 
 }
