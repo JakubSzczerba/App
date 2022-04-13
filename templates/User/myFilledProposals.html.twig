@@ -24,7 +24,9 @@
                         {% if userFilledProposals.decision == 'Zaakceptowany' %}
                             <td><span class="badge badge-pill badge-success">{{ userFilledProposals.decision }}</span></td>
                             <td>
-                                <button type="submit" class="btn btn-warning">Podlgad</button>
+                                <form action="{{ path('viewProposal', {id: userFilledProposals.id}) }}" method="POST" class="form-horizontal">
+                                    <button type="submit" class="btn btn-warning">Podlgad</button>
+                                </form>
                             </td>
                         {% elseif userFilledProposals.decision == 'Wymagana zmiana' %}
                             <td><span class="badge badge-pill badge-secondary">{{ userFilledProposals.decision }}</span></td>
@@ -35,7 +37,9 @@
                         {% elseif userFilledProposals.decision == 'Odrzucony' %}
                             <td><span class="badge badge-pill badge-danger">{{ userFilledProposals.decision }}</span></td>
                             <td>
-                                <button type="submit" class="btn btn-warning">Podlgad</button>
+                                <form action="{{ path('viewProposal', {id: userFilledProposals.id}) }}" method="POST" class="form-horizontal">
+                                    <button type="submit" class="btn btn-warning">Podlgad</button>
+                                </form>
                             </td>
                         {% else %}
                             <td><span class="badge badge-pill badge-info">{{ userFilledProposals.decision }}</span></td>

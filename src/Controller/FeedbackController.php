@@ -18,13 +18,20 @@ use Symfony\Component\HttpFoundation\Response;
 class FeedbackController extends AbstractController
 {
     /**
-     * @Route("/dashboard/myProposals/{id}", methods="GET|POST", name="feedbackActions")
+     * @Route("/dashboard/myProposals/{id}", methods="GET|POST", name="viewProposal")
      */
-    public function feedbackActions(EntityManagerInterface $entityManager, int $id)
+    public function viewProposal(EntityManagerInterface $entityManager, int $id)
     {
-        $userFilledProposal = $this->getDoctrine()->getRepository(ProposalFilled::class)->find(array('id' => $id));
+        $viewProposal = $this->getDoctrine()->getRepository(ProposalFilled::class)->find(array('id' => $id));
+        $new = 'Nowy';
+        $accepted = 'Zaakceptowany';
+        $refused = 'Odrzucony';
+        $needChange = 'Wymagana zmiana';
+        $corrected = 'Poprawiony';
 
-        return $this->render('User/myFilledProposals.html.twig', []);
+        return $this->render('User/viewFilledProposal.html.twig', [
+            'proposal' => $viewProposal,
+        ]);
     }
 
 }
