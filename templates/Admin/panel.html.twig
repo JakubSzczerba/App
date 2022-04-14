@@ -3,21 +3,21 @@
 {% block body %}
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="mt-5">Lista Wniosków <a href="{{ path('listFilledProposals') }}">Wypelnione wnioski</a></h1>
+            <h1 class="mt-5">{{'Lista Wniosków'|trans }} <a href="{{ path('listFilledProposals') }}">{{'Wypelnione wnioski'|trans }}</a></h1>
             <br>
             {% if proposals is defined %}
             <form action="{{ path('newProposal') }}" method="POST" class="form-horizontal">
-                <button type="submit" class="btn btn-success">Nowy wniosek</button>
+                <button type="submit" class="btn btn-success">{{'Nowy wniosek'|trans }}</button>
             </form>
             <br>
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th><h6>LP</h6></th>
-                    <th><h6>Nazwa wniosku</h6></th>
-                    <th><h6>Rodzaj</h6></th>
-                    <th><h6>Data</h6></th>
-                    <th><h6>Status</h6></th>
+                    <th><h6>{{'LP'|trans }}</h6></th>
+                    <th><h6>{{'Nazwa wniosku'|trans }}</h6></th>
+                    <th><h6>{{'Rodzaj'|trans }}</h6></th>
+                    <th><h6>{{'Data'|trans }}</h6></th>
+                    <th><h6>{{'Status'|trans }}</h6></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -30,20 +30,20 @@
                          {% if proposals.activity == 1 %}
                              <td>
                                  <form action="{{ path('offStatus', {id: proposals.id}) }}" method="POST" class="form-horizontal">
-                                     <button type="submit" class="btn btn-danger">Dezaktywuj</button>
+                                     <button type="submit" class="btn btn-danger">{{'Dezaktywuj'|trans }}</button>
                                  </form>
                              </td>
                          {% elseif proposals.activity == 0 %}
                              <td>
                                  <form action="{{ path('onStatus', {id: proposals.id}) }}" method="POST" class="form-horizontal">
-                                     <button type="submit" class="btn btn-success">Aktywuj</button>
+                                     <button type="submit" class="btn btn-success">{{'Aktywuj'|trans }}</button>
                                  </form>
                              </td>
                              {% else %}
                          {% endif%}
                             <td>
-                                <a href="{{ path('editProposal', {id: proposals.id}) }}">Edytuj</a>
-                                <a class="remove" href="{{ path('removeProposal', {id: proposals.id}) }}" onclick="return confirm('Jesteś pewny?')"><span style="color: red">Usuń</span></a>
+                                <a href="{{ path('editProposal', {id: proposals.id}) }}">{{'Edytuj'|trans }}</a>
+                                <a class="remove" href="{{ path('removeProposal', {id: proposals.id}) }}" onclick="return confirm('Jesteś pewny?')"><span style="color: red">{{'Usuń'|trans }}</span></a>
                             </td>
                     {% endfor %}
                 </tbody>
