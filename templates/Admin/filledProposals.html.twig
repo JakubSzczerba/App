@@ -11,7 +11,7 @@
                     <tr>
                         <th>LP</th>
                         <th>Wniosek</th>
-                        <th>Pacownik</th>
+                        <th>{{'Pracownik'|trans }}</th>
                         <th>Rodzaj</th>
                         <th>Data</th>
                         <th>Decyzja</th>
@@ -27,7 +27,7 @@
                             <td>{{ filledProposals.proposal.type }}</td>
                             <td>{{ filledProposals.proposal.datetime|date('d-m-Y') }}</td>
                             {% if filledProposals.decision == 'Zaakceptowany' %}
-                                <td><span class="badge badge-pill badge-success">{{ filledProposals.decision }}</span></td>
+                                <td><span class="badge badge-pill badge-success">{{ filledProposals.decision|trans }}</span></td>
                             {% elseif filledProposals.decision == 'Wymagana zmiana' %}
                                 <td><span class="badge badge-pill badge-secondary">{{ filledProposals.decision }}</span></td>
                             {% elseif filledProposals.decision == 'Odrzucony' %}
@@ -39,7 +39,7 @@
                             {% endif %}
                             <td>
                                 <form action="{{ path('makeDecision', {id: filledProposals.id}) }}" method="POST" class="form-horizontal">
-                                    <button type="submit" class="btn btn-success">Zarzadzaj</button>
+                                    <button type="submit" class="btn btn-success">{{'Zarzadzaj'|trans }}</button>
                                 </form>
                             </td>
                         </tr>

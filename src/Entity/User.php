@@ -42,6 +42,11 @@ class User implements UserInterface
     private $roles = [];
 
     /**
+     * @ORM\Column(type="string", length=128)
+     */
+    private $locale;
+
+    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Proposal", mappedBy="user")"
      *
      */
@@ -58,11 +63,7 @@ class User implements UserInterface
      * @param string $email
      */
 
-    public function __construct(string $username, string $email)
-    {
-        $this->username = $username;
-        $this->email = $email;
-    }
+
 
     public function getId()
     {
@@ -143,6 +144,17 @@ class User implements UserInterface
     public function setProposalFilled(?ProposalFilled $filledByUser): self
     {
         $this->filledByUser = $filledByUser;
+        return $this;
+    }
+
+    public function getLocale(): ?string
+    {
+        return $this->locale;
+    }
+
+    public function setLocale(?string $locale): self
+    {
+        $this->locale = $locale;
         return $this;
     }
 

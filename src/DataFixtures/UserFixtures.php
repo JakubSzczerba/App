@@ -43,12 +43,13 @@ class UserFixtures extends Fixture
 
     private function loadUsers(ObjectManager $manager): void
     {
-        foreach ($this->getUserData() as [$username, $email, $password, $roles]) {
+        foreach ($this->getUserData() as [$username, $email, $password, $roles, $locale]) {
             $user = new User();
             $user->setUsername($username);
             $user->setEmail($email);
             $user->setPassword($this->encoder->encodePassword($user, $password));
             $user->setRoles($roles);
+            $user->setLocale($locale);
 
 
             $manager->persist($user);
@@ -61,9 +62,9 @@ class UserFixtures extends Fixture
     private function getUserData(): array
     {
         return [
-            ['user', 'user@test.com', 'user', ['ROLE_USER']],
-            ['user2', 'user2@test.com', 'use2r', ['ROLE_USER']],
-            ['admin', 'admin@test.com', 'admin', ['ROLE_ADMIN']],
+            ['user', 'user@test.com', 'user', ['ROLE_USER'], 'pl_PL'],
+            ['user2', 'user2@test.com', 'use2r', ['ROLE_USER'], 'pl_PL'],
+            ['admin', 'admin@test.com', 'admin', ['ROLE_ADMIN'], 'pl_PL'],
         ];
     }
 }
