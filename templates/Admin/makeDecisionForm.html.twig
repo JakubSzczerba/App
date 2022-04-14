@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12">
 
-            <h3 class="mt-5">Wniosek: {{ filledProposal.proposal.name }}</h3>
+            <h3 class="mt-5">{{'Nazwa wniosku'|trans }}: {{ filledProposal.proposal.name }}</h3>
             <div class="col-lg-6">
                 <table class="table table-striped">
                     <thead>
@@ -15,27 +15,27 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>Rodzaj wniosku</td>
+                        <td>{{'Rodzaj'|trans }}</td>
                         <td>{{ filledProposal.proposal.type }}</td>
                     </tr>
                     <tr>
-                        <td>Opis</td>
+                        <td>{{'Opis'|trans }}</td>
                         <td>{{ filledProposal.proposal.description }}</td>
                     </tr>
                     <tr>
-                        <td>Pracownik</td>
+                        <td>{{'Pracownik'|trans }}</td>
                         <td>{{ filledProposal.users.username }} ({{ filledProposal.users.email }})</td>
                     </tr>
                     <tr>
-                        <td>Data</td>
+                        <td>{{'Data'|trans }}</td>
                         <td>{{ filledProposal.proposal.datetime|date('d-m-Y') }}</td>
                     </tr>
                     <tr>
-                        <td>Wartosc</td>
+                        <td>{{'Wartosc'|trans }}</td>
                         <td>{{ filledProposal.proposal.value }}</td>
                     </tr>
                     <tr>
-                        <td>Decyzja</td>
+                        <td>{{'Decyzja'|trans }}</td>
                         <td>
                             {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
                             {{ form_label(form.decision) }}
@@ -44,7 +44,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Informacja dla pracownika</td>
+                        <td>{{'Informacja dla pracownika'|trans }}</td>
                         <td>
                             {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
                             {{ form_label(form.information) }}
@@ -55,7 +55,7 @@
                     <tr>
                         <td></td>
                         <td>
-                            <input type="submit" value="Zatwierdz" class="btn btn-success">
+                            <input type="submit" value="{{'Zatwierdz'|trans }}" class="btn btn-success">
                             {{ form_end(form) }}
                         </td>
                     </tr>

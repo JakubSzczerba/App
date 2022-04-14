@@ -3,19 +3,19 @@
 {% block body %}
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="mt-5">Wypelnione wnioski <a href="{{ path('list') }}">Lista wnioskow</a></h1>
+            <h1 class="mt-5">{{'Wypelnione wnioski'|trans }} <a href="{{ path('list') }}">{{'Lista Wniosków'|trans }}</a></h1>
             <br>
                 <br>
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>LP</th>
-                        <th>Wniosek</th>
-                        <th>Pacownik</th>
-                        <th>Rodzaj</th>
-                        <th>Data</th>
-                        <th>Decyzja</th>
-                        <th>Akcje</th>
+                        <th>{{'LP'|trans }}</th>
+                        <th>{{'Nazwa wniosku'|trans }}</th>
+                        <th>{{'Pracownik'|trans }}</th>
+                        <th>{{'Rodzaj'|trans }}</th>
+                        <th>{{'Data'|trans }}</th>
+                        <th>{{'Decyzja'|trans }}</th>
+                        <th>{{'Akcje'|trans }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -27,19 +27,19 @@
                             <td>{{ filledProposals.proposal.type }}</td>
                             <td>{{ filledProposals.proposal.datetime|date('d-m-Y') }}</td>
                             {% if filledProposals.decision == 'Zaakceptowany' %}
-                                <td><span class="badge badge-pill badge-success">{{ filledProposals.decision }}</span></td>
+                                <td><span class="badge badge-pill badge-success">{{ filledProposals.decision|trans }}</span></td>
                             {% elseif filledProposals.decision == 'Wymagana zmiana' %}
-                                <td><span class="badge badge-pill badge-secondary">{{ filledProposals.decision }}</span></td>
+                                <td><span class="badge badge-pill badge-secondary">{{ filledProposals.decision|trans }}</span></td>
                             {% elseif filledProposals.decision == 'Odrzucony' %}
-                                <td><span class="badge badge-pill badge-danger">{{ filledProposals.decision }}</span></td>
+                                <td><span class="badge badge-pill badge-danger">{{ filledProposals.decision|trans }}</span></td>
                             {% elseif filledProposals.decision == 'Wymaga weryfiakcji' %}
-                                <td><span class="badge badge-pill badge-dark">{{ filledProposals.decision }}</span></td>
+                                <td><span class="badge badge-pill badge-dark">{{ filledProposals.decision|trans }}</span></td>
                             {% else %}
-                                <td><span class="badge badge-pill badge-info">{{ filledProposals.decision }}</span></td>
+                                <td><span class="badge badge-pill badge-info">{{ filledProposals.decision|trans }}</span></td>
                             {% endif %}
                             <td>
                                 <form action="{{ path('makeDecision', {id: filledProposals.id}) }}" method="POST" class="form-horizontal">
-                                    <button type="submit" class="btn btn-success">Zarzadzaj</button>
+                                    <button type="submit" class="btn btn-success">{{'Zarzadzaj'|trans }}</button>
                                 </form>
                             </td>
                         </tr>

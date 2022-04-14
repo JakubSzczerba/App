@@ -6,11 +6,12 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User implements UserInterface
+class User implements UserInterface, EquatableInterface
 {
     /**
      * @ORM\Column(type="integer")
@@ -42,6 +43,11 @@ class User implements UserInterface
     private $roles = [];
 
     /**
+     * @ORM\Column(type="string", length=128)
+     */
+    private $locale;
+
+    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Proposal", mappedBy="user")"
      *
      */
@@ -58,11 +64,7 @@ class User implements UserInterface
      * @param string $email
      */
 
-    public function __construct(string $username, string $email)
-    {
-        $this->username = $username;
-        $this->email = $email;
-    }
+
 
     public function getId()
     {
@@ -146,6 +148,17 @@ class User implements UserInterface
         return $this;
     }
 
+    public function getLocale(): ?string
+    {
+        return $this->locale;
+    }
+
+    public function setLocale(?string $locale): self
+    {
+        $this->locale = $locale;
+        return $this;
+    }
+
     /**
      * Returns the salt that was originally used to encode the password.
      *
@@ -162,5 +175,16 @@ class User implements UserInterface
 
     public function eraseCredentials() {
         // TODO: Implement eraseCredentials() method.
+    }
+
+    public function isEqualTo(UserInterface $user)
+    {
+        if ($user instanceof self)
+        {
+            if ($user->getLocale() != $this->locale) {
+                return false;
+            }
+        }
+        return true;
     }
 }
