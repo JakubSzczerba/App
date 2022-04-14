@@ -14,6 +14,16 @@
     <div class="container">
         {% if app.user %}
             <a class="navbar-brand" href="#">{{ app.user.username }}</a>
+            {% if app.user.locale == 'pl_PL' %}
+                <form action="{{ path('changeLocaleToEN') }}" method="POST" class="form-horizontal">
+                    <button type="submit" class="btn btn-dark">Angielski</button>
+                </form>
+            {% endif %}
+            {% if app.user.locale == 'en_EN' %}
+                <form action="{{ path('changeLocaleToPL') }}" method="POST" class="form-horizontal">
+                    <button type="submit" class="btn btn-dark">Polski</button>
+                </form>
+            {% endif %}
         {% endif %}
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">

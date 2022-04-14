@@ -62,7 +62,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/panel", methods="GET|POST", name="list")
      */
-    public function showProposals(ProposalRepository $proposalRepository)
+    public function showProposals(Request $request, ProposalRepository $proposalRepository)
     {
         $id = $this->getUser()->getId();
 
@@ -180,7 +180,37 @@ class AdminController extends AbstractController
             'form' => $form->createView(),
             'filledProposal' => $filledProposal,
         ]);
+    }
 
+    /**
+     * @route("/en", name="changeLocaleToEN")
+     */
+    public function changeLocaleToEN(EntityManagerInterface $entityManager, Request $request)
+    {
+        $user = $this->getUser();
+        $english = 'en_EN';
 
+        $user->setLocale($english);
+
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('panel');
+    }
+
+    /**
+     * @route("/pl", name="changeLocaleToPL")
+     */
+    public function changeLocaleToPL(EntityManagerInterface $entityManager, Request $request)
+    {
+        $user = $this->getUser();
+        $polish = 'pl_PL';
+
+        $user->setLocale($polish);
+
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('panel');
     }
 }
